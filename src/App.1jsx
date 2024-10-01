@@ -1,0 +1,119 @@
+import "./App.css";
+import { Canvas } from "@react-three/fiber";
+import { Experience } from "./components/Experience";
+import { Bloom, EffectComposer } from "@react-three/postprocessing";
+import { Suspense } from "react";
+import UI from "./components/ui";
+import { BoxGeometry } from "three";
+import {
+  AccumulativeShadows,
+  Box,
+  Environment,
+  GradientTexture,
+  MeshDistortMaterial,
+  MeshWobbleMaterial,
+  OrbitControls,
+  Plane,
+  RandomizedLight,
+  ScrollControls,
+  SoftShadows,
+  Text,
+  useTexture,
+} from "@react-three/drei";
+import { Planet } from "./components/Planet";
+import { Rapier } from "./components/Rapier";
+import { Physics } from "@react-three/rapier";
+import { CellFractured } from "./components/CellFractured";
+
+function App() {
+  return (
+    <>
+      {/* <Canvas
+        shadows
+        camera={{
+          position: [20, 20, 20],
+          fov: 30,
+        }}
+      >
+        <color attach="background" args={["#ececec"]} />
+        <ScrollControls pages={4} />
+        {/* <OrbitControls
+          minPolarAngle={0}
+          maxPolarAngle={Math.PI / 2}
+          autoRotate
+          autoRotateSpeed={0.05}
+          makeDefault 
+        />*/}
+      {/* <OrbitControls /> */}
+      {/* <Suspense> */}
+      {/* <CellFractured /> */}
+      {/* <mesh>
+            <boxGeometry />
+            <MeshWobbleMaterial factor={0.5} speed={2} />
+          </mesh> */}
+
+      {/* <directionalLight position={[-10, 10, 0]} intensity={0.4} />
+          <mesh>
+            <boxGeometry />
+            <meshToonMaterial color="hotpink" />
+          </mesh> */}
+      {/* <mesh scale={[2, 4, 1]}>
+            <Text font="">
+              Hodnoty
+              <MeshDistortMaterial speed={1}>
+                <GradientTexture
+                  stops={[0, 0.8, 1]}
+                  colors={["lightblue", "springreen", "yellow"]}
+                  size={100}
+                />
+              </MeshDistortMaterial>
+            </Text>
+          </mesh>
+          <AccumulativeShadows temporal frames={100} scale={10}>
+            <RandomizedLight amount={8} position={[5, 5, -10]} />
+          </AccumulativeShadows>
+          <Environment preset="sunset" blur={0.4} />
+        </Suspense>
+      </Canvas> */}
+
+      <Canvas shadows camera={{ position: [0, 0, 8], fov: 42 }}>
+        <color attach="background" args={["#171720"]} />
+        {/* <fog attach="fog" args={["#171720", 10, 20]} /> */}
+        <Suspense>
+          <Experience />
+        </Suspense>
+        <EffectComposer>
+          <Bloom mipmapBlur intensity={1.2} />
+        </EffectComposer>
+      </Canvas>
+      <UI />
+    </>
+  );
+}
+
+export default App;
+
+// // camera={{
+//   position: [3, 3, 3],
+// }}
+
+{
+  /* <Canvas shadows camera={{ position: [0, 0, 8], fov: 42 }}>
+        <color attach="background" args={["#171720"]} />
+        <fog attach="fog" args={["#171720", 10, 20]} />
+        <Suspense>
+          <Experience />
+        </Suspense>
+        <EffectComposer>
+          <Bloom mipmapBlur intensity={1.2} />
+        </EffectComposer>
+      </Canvas>
+      <UI /> */
+}
+
+// <Physics
+// debug
+// // gravity={[0, -50, 0]}
+// >
+// <Rapier />
+// </Physics>
